@@ -1,1 +1,1120 @@
+# Generate index.html containing all CV data, styled in Columbia Blue with professional & casual vibe
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dana March Palmer, PhD MPH | Columbia Business School</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Columbia Blue Palette */
+            --columbia-blue: #9BCBEB;
+            --columbia-blue-dark: #73A9AD;
+            --columbia-navy: #1D3557;
+            --columbia-accent: #457B9D;
+            --bg-light: #F4F8FA;
+            --card-bg: #FFFFFF;
+            --text-main: #2B2D42;
+            --text-muted: #5C677D;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--columbia-accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--columbia-navy);
+            text-decoration: underline;
+        }
+
+        /* Header / Navbar */
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .brand-title {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--columbia-navy);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.4rem 0.6rem;
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--columbia-navy);
+            background-color: rgba(155, 203, 235, 0.2);
+        }
+
+        /* Hero / Profile Section */
+        .hero {
+            background: linear-gradient(135deg, #E6F2F8 0%, #CDE3F2 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4rem 2rem;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .hero-name {
+            font-family: 'Lora', serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--columbia-navy);
+            line-height: 1.2;
+        }
+
+        .hero-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--columbia-accent);
+        }
+
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .hero-details-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--columbia-navy);
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--columbia-accent);
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background-color: #FFFFFF;
+            color: var(--columbia-navy);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--columbia-blue);
+            color: var(--columbia-navy);
+            text-decoration: none;
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--columbia-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Lora', serif;
+            font-size: 1.75rem;
+            color: var(--columbia-navy);
+        }
+
+        /* Timeline / Tile Grid Components */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--columbia-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.05rem;
+            color: var(--columbia-navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .timeline-content .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .details {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-top: 0.5rem;
+        }
+
+        /* Grid Cards */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            margin-bottom: 0.75rem;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background-color: rgba(155, 203, 235, 0.3);
+            color: var(--columbia-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            color: var(--columbia-navy);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Lists */
+        .publication-list, .grant-list, .teaching-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .pub-item, .grant-item, .teaching-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.4rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: var(--columbia-navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-authors {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-journal {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .sub-category {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            color: var(--columbia-navy);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--columbia-navy);
+            color: #FFFFFF;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--columbia-blue);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .hero-name {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="brand-title">Dana March Palmer, PhD MPH</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#honors">Honors</a></li>
+                    <li><a href="#service">Service</a></li>
+                    <li><a href="#grants">Grants</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero / Personal Data Section -->
+    <section class="hero" id="about">
+        <div class="hero-container">
+            <div>
+                <h1 class="hero-name">Dana March Palmer, PhD MPH</h1>
+                <p class="hero-title">Senior Associate Dean for Curriculum and Programs | Columbia Business School</p>
+            </div>
+            
+            <div class="hero-details">
+                <div class="hero-details-item">
+                    <strong>Address:</strong> 1185A Kravis Hall, 665 W 130th Street, New York, NY 10027
+                </div>
+                <div class="hero-details-item">
+                    <strong>Phone:</strong> 917-538-0038
+                </div>
+                <div class="hero-details-item">
+                    <strong>Email:</strong> <a href="mailto:dm2025@gsb.columbia.edu">dm2025@gsb.columbia.edu</a>
+                </div>
+                <div class="hero-details-item">
+                    <strong>Citizenship:</strong> USA (Born: Midland, TX)
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dana-march-palmer-774924294/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn Profile</a>
+                <a href="https://github.com/danamarchpalmer" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+
+        <!-- Experience Section -->
+        <section class="section" id="experience">
+            <div class="section-header">
+                <h2 class="section-title">Academic Appointments & Work Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">08/2025 – Present</div>
+                    <div class="timeline-content">
+                        <h4>Senior Associate Dean for Curriculum and Programs</h4>
+                        <div class="subtitle">Office of the Dean, Columbia Business School, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">08/2023 – 12/2024</div>
+                    <div class="timeline-content">
+                        <h4>Associate Dean for Doctoral Education</h4>
+                        <div class="subtitle">Office of Education, Office of the Dean, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">02/2021 – 08/2025</div>
+                    <div class="timeline-content">
+                        <h4>Senior Associate Provost for Academic Programs</h4>
+                        <div class="subtitle">Office of the Vice Provost for Academic Programs, Office of the Provost, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">10/2018 – 02/2021</div>
+                    <div class="timeline-content">
+                        <h4>Associate Dean for Educational Initiatives</h4>
+                        <div class="subtitle">Office of Education, Office of the Dean, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">05/2017 – 02/2021</div>
+                    <div class="timeline-content">
+                        <h4>Assistant Professor</h4>
+                        <div class="subtitle">Center for Infection and Immunity, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">01/2013 – Present</div>
+                    <div class="timeline-content">
+                        <h4>Assistant Professor of Epidemiology at CUIMC</h4>
+                        <div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">03/2012 – 12/2012</div>
+                    <div class="timeline-content">
+                        <h4>Associate Research Scientist</h4>
+                        <div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">01/2011 – 03/2012</div>
+                    <div class="timeline-content">
+                        <h4>Adjunct Associate Research Scientist</h4>
+                        <div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">02/2010 – 02/2012</div>
+                    <div class="timeline-content">
+                        <h4>Scientific Program Manager</h4>
+                        <div class="subtitle">Office for Research on Disparities and Global Mental Health, National Institute of Mental Health</div>
+                        <div class="location">Bethesda, MD</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2009 – 01/2010</div>
+                    <div class="timeline-content">
+                        <h4>Staff Associate</h4>
+                        <div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2004 – 12/2009</div>
+                    <div class="timeline-content">
+                        <h4>Seminar Leader</h4>
+                        <div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2005 – 12/2008</div>
+                    <div class="timeline-content">
+                        <h4>Adjunct Assistant Professor</h4>
+                        <div class="subtitle">Department of Community Health and Social Medicine, The City University of New York</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">08/2002 – 08/2004</div>
+                    <div class="timeline-content">
+                        <h4>Staff Associate</h4>
+                        <div class="subtitle">Department of Psychiatry, Columbia University College of Physicians and Surgeons</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/2001 – 08/2002</div>
+                    <div class="timeline-content">
+                        <h4>Research Assistant</h4>
+                        <div class="subtitle">Department of Psychiatry, Columbia University College of Physicians and Surgeons</div>
+                        <div class="location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">10/2000 – 05/2001</div>
+                    <div class="timeline-content">
+                        <h4>Mental Health Worker</h4>
+                        <div class="subtitle">Departments of Emergency Medicine and Psychiatry, Yale-New Haven Hospital</div>
+                        <div class="location">New Haven, CT</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">08/1999 – 07/2001</div>
+                    <div class="timeline-content">
+                        <h4>Research Associate</h4>
+                        <div class="subtitle">Department of Psychiatry, Yale University School of Medicine</div>
+                        <div class="location">New Haven, CT</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">10/1998 – 04/1999</div>
+                    <div class="timeline-content">
+                        <h4>Intake Interviewer</h4>
+                        <div class="subtitle">Department of Psychiatry, UT Southwestern Medical Center at Dallas / Parkland Memorial Hospital</div>
+                        <div class="location">Dallas, TX</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">09/1997 – 05/1999</div>
+                    <div class="timeline-content">
+                        <h4>Research Assistant</h4>
+                        <div class="subtitle">Department of Psychiatry, UT Southwestern Medical Center at Dallas</div>
+                        <div class="location">Dallas, TX</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section" id="education">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">09/2003 – 02/2011</span>
+                        <div class="card-title">PhD with distinction in Epidemiology</div>
+                        <div class="card-subtitle">Columbia University, Graduate School of Arts and Sciences</div>
+                    </div>
+                    <p><strong>Dissertation:</strong> Place, Race, and Psychosis<br><strong>Sponsor:</strong> Ezra Susser</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">02/2007</span>
+                        <div class="card-title">MPhil</div>
+                        <div class="card-subtitle">Columbia University, Graduate School of Arts and Sciences</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">09/2001 – 05/2003</span>
+                        <div class="card-title">MPH in Epidemiology</div>
+                        <div class="card-subtitle">Columbia University, Mailman School of Public Health</div>
+                    </div>
+                    <p><strong>Thesis:</strong> The Association Between Panic Disorder and Atopy: A Genetic Linkage Study<br><strong>Sponsor:</strong> Myrna Weissman</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-tag">08/1993 – 02/1999</span>
+                        <div class="card-title">BA in Psychology</div>
+                        <div class="card-subtitle">Southern Methodist University</div>
+                    </div>
+                    <p><strong>Minors:</strong> Italian Area Studies and Advertising</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Honors Section -->
+        <section class="section" id="honors">
+            <div class="section-header">
+                <h2 class="section-title">Honors & Awards</h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="card-tag">2024</div>
+                    <div class="card-title">Presidential Teaching Award Nominee</div>
+                    <div class="card-subtitle">Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2017 – 2025</div>
+                    <div class="card-title">Co-Director</div>
+                    <div class="card-subtitle">Biostatistics and Epidemiology Summer Diversity Training Program</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2017 – 2021</div>
+                    <div class="card-title">Deputy Director</div>
+                    <div class="card-subtitle">Center for Solutions for ME/CFS</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2016</div>
+                    <div class="card-title">Collaboratory@Columbia University Awardee</div>
+                    <div class="card-subtitle">Team-based big data course focused on translating evidence to action</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2015 – 2026</div>
+                    <div class="card-title">Director of Undergraduate Studies in Public Health</div>
+                    <div class="card-subtitle">Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2014 – 2017</div>
+                    <div class="card-title">Loan Repayment Program Awardee</div>
+                    <div class="card-subtitle">National Institutes of Health / NIMHD</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2014 – 2015</div>
+                    <div class="card-title">Public Voices Fellow</div>
+                    <div class="card-subtitle">The Op-Ed Project at Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2014</div>
+                    <div class="card-title">Invited Speaker</div>
+                    <div class="card-subtitle">Institute of Medicine Health Communications Roundtable</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2012</div>
+                    <div class="card-title">Distinguished Achievement Award</div>
+                    <div class="card-subtitle">National Institute of Mental Health / Kelly Government Solutions</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2011</div>
+                    <div class="card-title">PhD in Epidemiology with Distinction</div>
+                    <div class="card-subtitle">Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2009</div>
+                    <div class="card-title">The William Farr Award in Epidemiology</div>
+                    <div class="card-subtitle">Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2009</div>
+                    <div class="card-title">Presidential Teaching Award Nominee for Graduate Teaching</div>
+                    <div class="card-subtitle">Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2008</div>
+                    <div class="card-title">Travel Award</div>
+                    <div class="card-subtitle">Schizophrenia International Research Society</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2007</div>
+                    <div class="card-title">Travel Award</div>
+                    <div class="card-subtitle">Society for Epidemiologic Research</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2006</div>
+                    <div class="card-title">Workshop Participant</div>
+                    <div class="card-subtitle">The Banbury Center, Cold Spring Harbor Laboratory (Schizophrenia & Related Disorders)</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">2004 – 2009</div>
+                    <div class="card-title">Predoctoral Fellowship in Psychiatric Epidemiology</div>
+                    <div class="card-subtitle">National Institute of Mental Health / Columbia University</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">1998</div>
+                    <div class="card-title">Summer Research Fellowship</div>
+                    <div class="card-subtitle">The Stanley Foundation</div>
+                </div>
+                <div class="card">
+                    <div class="card-tag">1993</div>
+                    <div class="card-title">University Merit Scholarship</div>
+                    <div class="card-subtitle">Southern Methodist University</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section class="section" id="service">
+            <div class="section-header">
+                <h2 class="section-title">Professional Organizations, Societies & Service</h2>
+            </div>
+            
+            <h3 class="sub-category">Memberships and Positions</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2026 – Present</div>
+                    <div class="timeline-content"><h4>GMAC Leadership Conference Advisory Committee</h4></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 – Present</div>
+                    <div class="timeline-content"><h4>Graduate Business Curriculum Roundtable</h4></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 – 2026</div>
+                    <div class="timeline-content"><h4>Council on Education in Public Health</h4><div class="subtitle">Undergraduate Public Health Network</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2012 – 2014</div>
+                    <div class="timeline-content"><h4>International Epidemiologic Association</h4><div class="subtitle">North American Regional Advisor</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2004 – 2009</div>
+                    <div class="timeline-content"><h4>American Psychopathological Association</h4></div>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Consultative</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2012 – 2013</div>
+                    <div class="timeline-content"><h4>Chronic Fatigue Initiative</h4></div>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Editorial Positions & Reviewing</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2013 – 2017</div>
+                    <div class="timeline-content"><h4>Editor-in-Chief and Fellowship Director</h4><div class="subtitle">the2x2project.org</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2013</div>
+                    <div class="timeline-content"><h4>Deputy Editor and Fellowship Director</h4><div class="subtitle">the2x2project.org</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2012</div>
+                    <div class="timeline-content"><h4>Associate Editor</h4><div class="subtitle">the2x2project.org</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2008 – Present</div>
+                    <div class="timeline-content">
+                        <h4>Ad hoc Reviewer</h4>
+                        <p class="details">American Journal of Epidemiology, American Journal of Psychiatry, American Journal of Public Health, Archives of General Psychiatry, BMC Open, BMC Psychiatry, Diabetes Care, Ethnicity & Disease, International Journal of Epidemiology, Journal of Healthcare for the Poor and Underserved, Medical Research Council (UK), National Science Foundation, Psychological Medicine, Schizophrenia Bulletin, Social Psychiatry and Psychiatric Epidemiology.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Committee Service</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 – 2026</div>
+                    <div class="timeline-content"><h4>Lead</h4><div class="subtitle">AI Curriculum Strategy Committee, Columbia Business School</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 – Present</div>
+                    <div class="timeline-content"><h4>Director of Reaccreditation and Steering Committee Co-Chair</h4><div class="subtitle">Office of the Provost, Columbia University</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content"><h4>Search Committee</h4><div class="subtitle">Vice Dean for Education, Mailman School of Public Health, Columbia University</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2018 – 2019</div>
+                    <div class="timeline-content"><h4>Lead</h4><div class="subtitle">Mailman School of Public Health DrPH Strategic Planning Group</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 – 2018</div>
+                    <div class="timeline-content"><h4>Co-Lead</h4><div class="subtitle">Mailman School of Public Health Reaccreditation Working Group</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 – 2017</div>
+                    <div class="timeline-content"><h4>Core Faculty Member</h4><div class="subtitle">Urban+Health Initiative, Mailman School of Public Health, Columbia University</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 – 2021</div>
+                    <div class="timeline-content"><h4>Core Advisory Committee</h4><div class="subtitle">Mailman School of Public Health</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2015 – 2017</div>
+                    <div class="timeline-content"><h4>Steering Committee</h4><div class="subtitle">Office for Diversity, Culture, and Inclusion, Mailman School of Public Health, Columbia University</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 – 2018</div>
+                    <div class="timeline-content"><h4>Masters Admissions Committee</h4><div class="subtitle">Department of Epidemiology, Mailman School of Public Health, Columbia University</div></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 – 2015</div>
+                    <div class="timeline-content"><h4>Search Committee</h4><div class="subtitle">Vice Dean for Education, Mailman School of Public Health, Columbia University</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grants Section -->
+        <section class="section" id="grants">
+            <div class="section-header">
+                <h2 class="section-title">Fellowship & Grant Support</h2>
+            </div>
+            <div class="grant-list">
+                <div class="grant-item">
+                    <div class="pub-title">Psychiatric Epidemiology Training Program (T32 MH13043)</div>
+                    <div class="pub-authors">National Institute of Mental Health | PI: Bruce Link</div>
+                    <div class="pub-journal">08/30/04 – 06/30/09 | Role: Predoctoral Fellow (12 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">A US-UK Comparison of Discrimination & Disparities in Health & Health Service Use (1R01 HD061320-01)</div>
+                    <div class="pub-authors">National Institute of Child Health and Human Development | PI: Bruce Link</div>
+                    <div class="pub-journal">08/30/09 – 06/30/14 | Role: Co-Investigator (2.4 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">A Lifecourse Approach to Emerging Health Disparities in a US Birth Cohort (1R01 HD058515)</div>
+                    <div class="pub-authors">National Institute of Child Health and Human Development | PI: Bruce Link</div>
+                    <div class="pub-journal">12/01/08 – 11/30/13 | Role: Co-Investigator (0.4 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Environmental Health Disparities in NOCEMHD (3P60 MD000206-09S1)</div>
+                    <div class="pub-authors">National Institute on Minority Health and Health Disparities | PI: José Luchsinger</div>
+                    <div class="pub-journal">09/22/11 – 01/31/13 | Role: Co-Investigator (6 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Phase III of the CFS Clinical Epidemiology Study</div>
+                    <div class="pub-authors">Chronic Fatigue Initiative</div>
+                    <div class="pub-journal">07/01/13 – 06/30/14 | Role: Principal Investigator (0.18 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">CFI Data Resource Project</div>
+                    <div class="pub-authors">Chronic Fatigue Initiative</div>
+                    <div class="pub-journal">06/01/15 – 12/30/17 | Role: Principal Investigator (0.18 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">New-York-City Hispanic-dementia-caregiver Research Program (NHiRP) (1R01NR014430)</div>
+                    <div class="pub-authors">National Institute on Nursing Research | PI: José Luchsinger</div>
+                    <div class="pub-journal">06/01/13 – 05/31/18 | Role: Co-Investigator (0.06 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Collaboratory@Columbia Award: "Analysis to Action: Harnessing Big Data for Population Health"</div>
+                    <div class="pub-authors">Collaboratory@Columbia, Columbia University</div>
+                    <div class="pub-journal">07/22/16 – 08/30/18 | Role: Course Co-Designer, Co-Instructor (0.6 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">BEST-DP: Biostatistics and Epidemiology Summer Training Diversity Program (5R25HL096260)</div>
+                    <div class="pub-authors">National Heart Lung and Blood Institute | Contact PI: Melissa D. Begg</div>
+                    <div class="pub-journal">07/03/17 – 04/30/19 | Role: Co-Principal Investigator</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Provost Hybrid Learning Course Redesign Award: Quantitative Foundations (PUBH P6031)</div>
+                    <div class="pub-authors">Office of the Provost, Columbia University</div>
+                    <div class="pub-journal">06/05/18 – 06/04/19 | Role: Principal Awardee and Instructor ($11,735)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Provost Hybrid Learning Course Redesign Award: Quantitative Foundations (PUBH P6031)</div>
+                    <div class="pub-authors">Office of the Provost, Columbia University</div>
+                    <div class="pub-journal">06/05/20 – 06/04/21 | Role: Principal Awardee and Instructor ($11,538)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">Center for Solutions for ME/CFS (1U54AI138370-01)</div>
+                    <div class="pub-authors">National Institute of Allergy and Infectious Diseases | PI: W. Ian Lipkin</div>
+                    <div class="pub-journal">09/22/17 – 08/31/22 | Role: Co-Investigator, Center Administrator, and Center Deputy Director (3.6 calendar months)</div>
+                </div>
+                <div class="grant-item">
+                    <div class="pub-title">BEST-DP: Biostatistics and Epidemiology Summer Training Diversity Program (5R25HL096260)</div>
+                    <div class="pub-authors">National Heart Lung and Blood Institute | Contact PI: Jeff Goldsmith</div>
+                    <div class="pub-journal">05/01/19 – 04/30/24 | Role: Co-Principal Investigator</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teaching Section -->
+        <section class="section" id="teaching">
+            <div class="section-header">
+                <h2 class="section-title">Teaching Experience & Mentorship</h2>
+            </div>
+
+            <h3 class="sub-category">Columbia University Main Courses</h3>
+            <div class="teaching-list">
+                <div class="teaching-item"><strong>2025:</strong> Introduction to Public Health (239 students, 26 lectures)</div>
+                <div class="teaching-item"><strong>2024:</strong> (Y)our Longer Life (150 students; co-taught with Dean Linda Fried)</div>
+                <div class="teaching-item"><strong>2023:</strong> Introduction to Public Health (Fall: 230 students, 26 lectures)</div>
+                <div class="teaching-item"><strong>2022:</strong> Introduction to Public Health (Fall: 220 students, Spring: 116 students); (Y)our Longer Life (87 students)</div>
+                <div class="teaching-item"><strong>2021:</strong> (Y)our Longer Life (74 students)</div>
+                <div class="teaching-item"><strong>2020:</strong> Introduction to Public Health (100 students); (Y)our Longer Life (70 students)</div>
+                <div class="teaching-item"><strong>2019:</strong> (Y)our Longer Life (50 students; co-developed with Dean Linda Fried)</div>
+                <div class="teaching-item"><strong>2014 – 2018:</strong> Introduction to Public Health (Annual enrollments ranging 29–80 students)</div>
+            </div>
+
+            <h3 class="sub-category">Department of Epidemiology, Mailman School of Public Health</h3>
+            <div class="teaching-list">
+                <div class="teaching-item">
+                    <strong>2015 – 2020 (Lead Instructor):</strong> Quantitative Foundations (integrated epidemiology and biostatistics), MPH Core Curriculum. Taught 101–460 students annually with up to 4 faculty and 22 TAs per term. Developed and implemented Columbia's largest hybrid course model.
+                </div>
+                <div class="teaching-item"><strong>2015 – 2018:</strong> Integration of Science and Practice (21–24 students)</div>
+                <div class="teaching-item"><strong>2015 – 2016:</strong> Epidemiology VI, PhD Curriculum (13–16 students, co-instructor with Gina Lovasi)</div>
+                <div class="teaching-item"><strong>2011 – 2012:</strong> Summer Institute at Columbia (EPIC): Place and Health; Psychiatric Epidemiology</div>
+            </div>
+
+            <h3 class="sub-category">Teaching Assistance & Early Teaching</h3>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                Teaching assistant for Perinatal Epidemiology, Principles of Epidemiology I/II/IV, Cardiovascular Epidemiology, Psychiatric Epidemiology, History of Epidemiology, and Public Health Genetics (2004–2009). Adjunct Assistant Professor at CUNY for Fundamentals of Epidemiology (MED 335, 2005–2008).
+            </p>
+
+            <h3 class="sub-category">Master’s Thesis & Doctoral Mentorship</h3>
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="card-title">MPH Thesis Trainees</div>
+                    <p class="card-subtitle">Jane Vanneheuang (2023–24), Maryjane Bermudez (2018–19), Jason Chua (2018–19), Oluwabusayo Ojo (2017–18), Miriam Besada (2016–17), Sarah Tsay (2016–17), Florence Lee (2014–15), Yasmin Mahoud (2012–13).</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">PhD Dissertation Committees</div>
+                    <p class="card-subtitle">Christopher Crowe (2025–Present), Ahtoy Won-Pat Borja (2023), Sheila Nemeth (2019), Anton Palmer (2019), Jennifer De Cuir (2015), Eric Roberts (2012).</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">Other Trainee Advisory Roles</div>
+                    <p class="card-subtitle">Mentored scholars across Laidlaw Summer Scholars, BEST, CSIBS, MedPrep, and the2x2project CHEF programs, guiding students to top PhD/MS programs at Columbia, BU, UIC, and UF.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section class="section" id="publications">
+            <div class="section-header">
+                <h2 class="section-title">Publications & Media</h2>
+            </div>
+
+            <h3 class="sub-category">Original, Peer Reviewed Articles</h3>
+            <div class="publication-list">
+                <div class="pub-item">
+                    <div class="pub-title">Associations of area-level and individual-level sociodemographic factors with adolescent phenotypes linked to subsequent cancer risk.</div>
+                    <div class="pub-authors">Cirillo PM, Keeler C, March Palmer D, Krigbaum NY, Cohn BA.</div>
+                    <div class="pub-journal">Reproductive Toxicology. 2025:136.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Impact of native language, English proficiency, and language concordance on interpersonal care during evaluation of acute coronary syndrome.</div>
+                    <div class="pub-authors">Edelman DS, Palmer DM, Romero EK, Chang BP, Kronish IM.</div>
+                    <div class="pub-journal">Journal of General Internal Medicine. 2023:Mar;38(4):946–953.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Metabolomic evidence for peroxisomal dysfunction and dysregulation of the CDP-choline pathway in Myalgic Encephalomyelitis/Chronic Fatigue Syndrome.</div>
+                    <div class="pub-authors">Che X, Brydges C, Yu Y, Price A, Joshi S, Roy A, Lee B, Barupal D, Cheng A, March Palmer D, Levine S, Peterson D, Vernon S, Bateman L, Hornig M, Montoya J, Komaroff A, Fiehn O, Lipkin WI.</div>
+                    <div class="pub-journal">International Journal of Molecular Science. 2022:23(14):7906.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Columbia Public Health Core Curriculum: implementation and educational outcomes assessment, 2013-2018.</div>
+                    <div class="pub-authors">Garbers S, March D, Kornfeld J, Baumgartner SR, Wiggin M, Westley LA, Ballesteros-Gonzalez D, Delva M, Fried LP.</div>
+                    <div class="pub-journal">Public Health Reports. 2022:Jan-Feb;137(1):168-178.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">The new public health workforce: Employment outcomes of public health graduate students.</div>
+                    <div class="pub-authors">Krasna H, Kornfeld J, Cushman L, Ni S, Antoniou P, March D.</div>
+                    <div class="pub-journal">Journal of Public Health Management and Practice. 2021:27(1):12-19.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Disparities in self-rated health across generations and through the life course.</div>
+                    <div class="pub-authors">Link BG, Susser ES, Factor-Litvak P, March D, Kezios KL, Lovasi GS, Rundle AG, Suglia SF, Fader KM, Andrews HF, Johnson E, Cirillo PM, Cohn BA.</div>
+                    <div class="pub-journal">Social Science & Medicine. 2017:Feb;174:17-25.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Discrimination and depression among urban Hispanics with poorly controlled diabetes.</div>
+                    <div class="pub-authors">March D, Williams J, Wells S, Eimicke JP, Teresi JA, Almonte C, Link BG, Findley SE, Palmas W, Carrasquillo O, Luchsinger JA.</div>
+                    <div class="pub-journal">Ethnicity & Disease. 2015:Spring;25(2):130-7.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Community health worker interventions to improve glycemic control in people with diabetes mellitus: A systematic review and meta-analysis.</div>
+                    <div class="pub-authors">Palmas W, March D, Teresi J, Luchsinger JA.</div>
+                    <div class="pub-journal">Journal of General Internal Medicine. 2015:Jul;30(7):1004-12.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Chronic Fatigue Syndrome and co-morbid and consequent conditions: evidence from a multi-site clinical epidemiology study.</div>
+                    <div class="pub-authors">Bateman L, Darakjy S, Klimas N, Peterson D, Levine SM, Allen A, Carlson SA, Balbin E, Gottschalk G, March D.</div>
+                    <div class="pub-journal">Fatigue: Biomedicine, Health & Behavior. 2015;3(1):1-15.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Social disorder and diagnostic order: the US mental health movement, the Midtown Manhattan study, and the development of psychiatric epidemiology in the 20th century.</div>
+                    <div class="pub-authors">March D and Oppenheimer GM.</div>
+                    <div class="pub-journal">International Journal of Epidemiology. 2014:Aug;43 Suppl 1:i29-42.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Psychosis and place.</div>
+                    <div class="pub-authors">March D, Hatch SL, Morgan C, Kirkbride J, Bresnahan M, Fearon P, Susser E.</div>
+                    <div class="pub-journal">Epidemiologic Reviews. 2008:30:84-100.</div>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Books and Chapters</h3>
+            <div class="publication-list">
+                <div class="pub-item">
+                    <div class="pub-title">Partners in cause and effect: social science, psychiatry, and the etiology of mental disorders.</div>
+                    <div class="pub-authors">March D and Susser E.</div>
+                    <div class="pub-journal">In: Psychiatry: Past, Present, and Prospect. Oxford University Press. 2014:64-73.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Epidemiology in community psychiatry.</div>
+                    <div class="pub-authors">March D and Susser E.</div>
+                    <div class="pub-journal">In: Handbook of Community Psychiatry. Springer. 2012:21-36.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">The eco- in eco-epidemiology.</div>
+                    <div class="pub-authors">March D and Susser E.</div>
+                    <div class="pub-journal">In: Eras in Epidemiology: The Evolution of Ideas. Oxford University Press. 2009:326-338.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Conceptualising the social world.</div>
+                    <div class="pub-authors">March D, Morgan C, Bresnahan M, Susser E.</div>
+                    <div class="pub-journal">In: Society and Psychosis. Cambridge University Press. 2008:41-57.</div>
+                </div>
+            </div>
+
+            <h3 class="sub-category">Popular Writing & Media Commentary</h3>
+            <div class="publication-list">
+                <div class="pub-item">
+                    <div class="pub-title">Dr. Oz's pixel practice needs safeguards: but keep him as faculty at Columbia.</div>
+                    <div class="pub-authors">Rosenbaum M and March D.</div>
+                    <div class="pub-journal">USA Today. Published April 24, 2015.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">'Fault in Our Stars' hides American truth.</div>
+                    <div class="pub-authors">March D.</div>
+                    <div class="pub-journal">USA Today. Published June 13, 2014.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">The long-term evidence for vaccines.</div>
+                    <div class="pub-authors">Garrett L and March D.</div>
+                    <div class="pub-journal">Newsweek (online edition). Published December 7, 2009.</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-title">Media Commentary & Expert Appearances</div>
+                    <div class="pub-authors">Featured expert commentator on public health, Ebola, and medical ethics for CBS This Morning, Al Jazeera America, WCBS New York, and WNYC. Author of numerous opinion essays on the2x2project.org.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Dana March Palmer, PhD MPH | Columbia University</p>
+        <p style="margin-top: 0.5rem;"><a href="https://github.com/danamarchpalmer" target="_blank" rel="noopener">GitHub</a> | <a href="https://www.linkedin.com/in/dana-march-palmer-774924294/" target="_blank" rel="noopener">LinkedIn</a></p>
+    </footer>
+
+</body>
+</html>
+"""
+
+# Save to file
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Created index.html successfully.")
